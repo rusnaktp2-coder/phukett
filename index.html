@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สัมผัสมนต์เสน่ห์ภูเก็ต - Phuket Tourism Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Prompt & Kanit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        phuket: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7', // Primary Ocean Blue
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0a3753',
+                            accent: '#00d2ff',
+                            gold: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                        sarabun: ['Sarabun', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Prompt', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(2, 132, 199, 0.4) 0%, rgba(12, 74, 110, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.15), 0 10px 10px -5px rgba(2, 132, 199, 0.04);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700 font-sans antialiased selection:bg-phuket-500 selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-phuket-100 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-phuket-600 to-phuket-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-bold fa-water text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold font-heading text-phuket-800 tracking-tight block leading-tight">สัมผัสมนต์เสน่ห์ภูเก็ต</span>
+                        <span class="text-xs text-phuket-500 font-medium tracking-wider uppercase">Pearl of the Andaman</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu Nav -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#places" class="px-4 py-2 rounded-full text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 font-medium transition-all">สถานที่ท่องเที่ยว</a>
+                    <a href="#food" class="px-4 py-2 rounded-full text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 font-medium transition-all">อาหารลิบลิ่ว</a>
+                    <a href="#festivals" class="px-4 py-2 rounded-full text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 font-medium transition-all">เทศกาลงานประเพณี</a>
+                    <a href="#itineraries" class="px-4 py-2 rounded-full text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 font-medium transition-all">แผนการเที่ยว 2-5 วัน</a>
+                    <a href="#planner" class="px-4 py-2 rounded-full text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 font-medium transition-all">คำนวณงบ</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="#planner" class="bg-gradient-to-r from-phuket-500 to-phuket-600 hover:from-phuket-600 hover:to-phuket-700 text-white font-medium px-5 py-2.5 rounded-full shadow-md shadow-phuket-500/20 hover:shadow-lg hover:shadow-phuket-500/30 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>วางแผนทริปเลย</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-phuket-600 hover:bg-phuket-50 focus:outline-none" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-phuket-100 px-4 pt-2 pb-6 space-y-2 shadow-lg animate-fadeIn">
+            <a href="#places" class="mobile-link block px-4 py-3 rounded-xl text-slate-700 hover:bg-phuket-50 hover:text-phuket-600 font-medium">
+                <i class="fa-solid fa-umbrella-beach w-6 text-phuket-500"></i> สถานที่ท่องเที่ยว
+            </a>
+            <a href="#food" class="mobile-link block px-4 py-3 rounded-xl text-slate-700 hover:bg-phuket-50 hover:text-phuket-600 font-medium">
+                <i class="fa-solid fa-utensils w-6 text-phuket-500"></i> อาหารลิบลิ่ว
+            </a>
+            <a href="#festivals" class="mobile-link block px-4 py-3 rounded-xl text-slate-700 hover:bg-phuket-50 hover:text-phuket-600 font-medium">
+                <i class="fa-solid fa-apple-whole w-6 text-phuket-500"></i> เทศกาลกินเจ & งานประเพณี
+            </a>
+            <a href="#itineraries" class="mobile-link block px-4 py-3 rounded-xl text-slate-700 hover:bg-phuket-50 hover:text-phuket-600 font-medium">
+                <i class="fa-solid fa-calendar-days w-6 text-phuket-500"></i> แผนเที่ยว 2-5 วัน
+            </a>
+            <a href="#planner" class="mobile-link block px-4 py-3 rounded-xl text-slate-700 hover:bg-phuket-50 hover:text-phuket-600 font-medium">
+                <i class="fa-solid fa-calculator w-6 text-phuket-500"></i> คำนวณงบประมาณ
+            </a>
+            <div class="pt-2">
+                <a href="#planner" class="mobile-link w-full bg-phuket-500 hover:bg-phuket-600 text-white font-medium py-3 rounded-xl text-center block shadow-md">
+                    <i class="fa-solid fa-compass mr-2"></i> วางแผนทริปเลย
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 hero-bg text-white overflow-hidden">
+        <!-- Floating decorative elements -->
+        <div class="absolute inset-0 bg-gradient-to-b from-phuket-900/30 via-phuket-900/20 to-slate-50"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 z-10">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-6 animate-pulse">
+                <i class="fa-solid fa-star text-phuket-gold"></i> มุกดามหาสมุทร แห่งทะเลอันดามัน
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight font-heading drop-shadow-md">
+                สัมผัสมนต์เสน่ห์ <span class="text-transparent bg-clip-text bg-gradient-to-r from-phuket-200 via-white to-sky-300">เมืองภูเก็ต</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-100 max-w-3xl mx-auto mb-10 font-light leading-relaxed drop-shadow">
+                ค้นพบความงดงามแห่งหาดทรายขาว ทะเลสีฟ้าคราม สถาปัตยกรรมชิโน-ยูโรเปียนอันมีเอกลักษณ์ และลิ้มลองรสชาติอาหารใต้ดั้งเดิมระดับมิชลิน
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#places" class="w-full sm:w-auto px-8 py-4 rounded-full bg-phuket-500 hover:bg-phuket-600 text-white font-semibold text-lg shadow-xl hover:shadow-phuket-500/50 transition-all flex items-center justify-center gap-3">
+                    <span>สำรวจสถานที่แนะนำ</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#planner" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/90 hover:bg-white text-phuket-800 font-semibold text-lg shadow-lg backdrop-blur-sm transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sliders text-phuket-500"></i>
+                    <span>คำนวณงบ & วางแผน</span>
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-white/20 max-w-4xl mx-auto text-center">
+                <div class="p-3">
+                    <p class="text-3xl font-bold font-heading text-phuket-200">30+</p>
+                    <p class="text-xs sm:text-sm text-slate-200">ชายหาดสวยงาม</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl font-bold font-heading text-phuket-200">100+</p>
+                    <p class="text-xs sm:text-sm text-slate-200">ร้านอาหารชื่อดัง</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl font-bold font-heading text-phuket-200">UNESCO</p>
+                    <p class="text-xs sm:text-sm text-slate-200">เมืองสร้างสรรค์อาหาร</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-3xl font-bold font-heading text-phuket-200">365</p>
+                    <p class="text-xs sm:text-sm text-slate-200">วัน เที่ยวได้ตลอดปี</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLACES SECTION -->
+    <section id="places" class="py-24 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-phuket-600 font-semibold text-sm tracking-widest uppercase mb-2">Destinations</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-slate-900 font-heading">สถานที่ท่องเที่ยวห้ามพลาด</p>
+                <div class="w-16 h-1 bg-phuket-500 mx-auto my-4 rounded-full"></div>
+                <p class="text-slate-600">รวบรวมจุดเช็คอินยอดฮิต ทั้งจุดชมวิวพระอาทิตย์ตก ย่านเมืองเก่า สถาปัตยกรรมชิโนประวัติศาสตร์ และเกาะสวรรค์แห่งอันดามัน</p>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="places-filter-container">
+                <button onclick="filterPlaces('all')" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-medium bg-phuket-500 text-white shadow-md transition-all">ทั้งหมด</button>
+                <button onclick="filterPlaces('beach')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white text-slate-600 hover:bg-phuket-50 border border-slate-200 transition-all">ชายหาด & เกาะ</button>
+                <button onclick="filterPlaces('culture')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white text-slate-600 hover:bg-phuket-50 border border-slate-200 transition-all">ย่านเมืองเก่า & วัฒนธรรม</button>
+                <button onclick="filterPlaces('viewpoint')" class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium bg-white text-slate-600 hover:bg-phuket-50 border border-slate-200 transition-all">จุดชมวิวสุดอลังการ</button>
+            </div>
+
+            <!-- Places Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="places-grid">
+                <!-- Place Card 1 -->
+                <div class="place-card beach bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?q=80&w=800&auto=format&fit=crop" alt="แหลมพรหมเทพ" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Phromthep+Cape'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-sun mr-1"></i> จุดชมวิว
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.9 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">แหลมพรหมเทพ</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">แลนด์มาร์กอันดับหนึ่งของภูเก็ต จุดชมพระอาทิตย์ตกดินที่สวยงามติดอันดับโลก พร้อมวิวคาบสมุทรยื่นออกสู่ทะเลอันดามันอันกว้างใหญ่</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> ตำบลราไวย์</span>
+                            <span class="text-phuket-600 font-medium">เข้าชมฟรี</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Card 2 -->
+                <div class="place-card culture bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800&auto=format&fit=crop" alt="ย่านเมืองเก่าภูเก็ต" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Old+Phuket+Town'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-building-columns mr-1"></i> วัฒนธรรม
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.8 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">ย่านเมืองเก่าภูเก็ต (Old Town)</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">เดินชมตึกโบราณสไตล์ชิโน-ยูโรเปียน อายุกว่าร้อยปี ถ่ายภาพกับสตรีทอาร์ตสุดคูล และชิมขนมพื้นเมืองตลอดสองข้างทางถนนถลาง</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> เมืองภูเก็ต</span>
+                            <span class="text-phuket-600 font-medium">เปิดตลอดวัน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Card 3 -->
+                <div class="place-card beach bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="หาดกะตะและหาดกะรน" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Kata+Beach'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-water mr-1"></i> ชายหาด
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.7 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">หาดกะตะ & หาดกะรน</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">ชายหาดเม็ดทรายสีขาวละเอียดยาวสุดสายตา น้ำทะเลใส เหมาะแก่การเล่นน้ำ นอนอาบแดด และเป็นสวรรค์ของเหล่านักโต้คลื่นในฤดูมรสุม</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> ตำบลกะรน</span>
+                            <span class="text-phuket-600 font-medium">กิจกรรมทางน้ำ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Card 4 -->
+                <div class="place-card culture viewpoint bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop" alt="วัดพระใหญ่ ภูเก็ต" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Big+Buddha'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-place-of-worship mr-1"></i> ปูชนียสถาน
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.9 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">พระพุทธมิ่งมงคลเอกนาคคีรี (พระใหญ่)</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">พระพุทธรูปปางมารวิชัยขนาดใหญ่ประดิษฐานบนยอดเขานาคเกิด มองเห็นทัศนียภาพของเกาะภูเก็ตได้เกือบ 360 องศา</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> เขานาคเกิด</span>
+                            <span class="text-phuket-600 font-medium">06:00 - 18:30 น.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Card 5 -->
+                <div class="place-card beach bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=800&auto=format&fit=crop" alt="เกาะเฮและเกาะราชา" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Racha+Island'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-ship mr-1"></i> เกาะ & ดำน้ำ
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.8 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">เกาะราชา & เกาะเฮ</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">เกาะสวรรค์ใกล้ภูเก็ต เดินทางด้วยสปีดโบ๊ทเพียง 15-30 นาที ดำน้ำชมปะการังน้ำใส และทำกิจกรรมทางน้ำสุดตื่นเต้น</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> นั่งเรือจากท่าเรือฉลอง</span>
+                            <span class="text-phuket-600 font-medium">ทริปวันเดียว</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place Card 6 -->
+                <div class="place-card viewpoint bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 card-hover">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=800&auto=format&fit=crop" alt="จุดชมวิวเขารัง" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" onerror="this.src='https://placehold.co/800x600/0284c7/white?text=Khao+Rang'">
+                        <span class="absolute top-4 right-4 bg-phuket-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-mountain mr-1"></i> จุดชมวิว
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-phuket-gold mb-2 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-xs ml-1">(4.6 / 5)</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-2">จุดชมวิวเขารัง</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">เนินเขาใจกลางเมืองภูเก็ต จุดชมวิวทิวทัศน์ตัวเมืองและทะเลไกลสุดตา พร้อมหอชมวิวและร้านอาหารบรรยากาศดี</p>
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                            <span><i class="fa-solid fa-location-dot text-phuket-500 mr-1"></i> เมืองภูเก็ต</span>
+                            <span class="text-phuket-600 font-medium">วิวเมือง & ชมดาว</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOD SECTION -->
+    <section id="food" class="py-24 bg-gradient-to-b from-white to-phuket-50 border-y border-phuket-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+                <div class="lg:w-1/2">
+                    <span class="inline-block px-3 py-1 bg-phuket-100 text-phuket-700 text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-utensils mr-1"></i> UNESCO City of Gastronomy
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 font-heading mb-4">
+                        ลิ้มรสชาติ <span class="text-phuket-600">อาหารเพอรานากัน</span> และอาหารใต้ดั้งเดิม
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        ภูเก็ตได้รับการยกย่องจาก UNESCO ให้เป็นเมืองสร้างสรรค์ด้านวิทยาการอาหาร (City of Gastronomy) ผสมผสานวัฒนธรรมจีน มลายู และไทย จนเกิดเป็นเอกลักษณ์รสชาติเฉพาะตัวที่ไม่เหมือนใคร
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-phuket-500 text-white flex items-center justify-center text-xs mt-0.5">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm">วัตถุดิบอาหารทะเลสดใหม่จากท้องทะเลอันดามัน</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-phuket-500 text-white flex items-center justify-center text-xs mt-0.5">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm">เครื่องแกงจัดจ้าน หอมกลิ่นสมุนไพรและพริกไทยสด</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-phuket-500 text-white flex items-center justify-center text-xs mt-0.5">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm">ร้านระดับมิชลินไกด์ และร้านสตรีทฟู้ดระดับตำนาน</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 w-full grid grid-cols-2 gap-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxrTr6drCpL2HWIG0HJ2uHGylTIXvbygxJktvp_lgyKQ&s=10" alt="หมูฮ้อง ภูเก็ต" class="rounded-2xl shadow-lg h-48 sm:h-56 w-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/600x400/0284c7/white?text=Phuket+Moo+Hong'">
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600&auto=format&fit=crop" alt="หมี่ฮกเกี้ยน" class="rounded-2xl shadow-lg h-48 sm:h-56 w-full object-cover translate-y-4" loading="lazy" onerror="this.src='https://placehold.co/600x400/0284c7/white?text=Phuket+Food+2'">
+                </div>
+            </div>
+
+            <!-- Food Menu Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Food Item 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-phuket-100 hover:border-phuket-300 transition-all card-hover">
+                    <div class="w-14 h-14 bg-phuket-50 rounded-2xl flex items-center justify-center text-phuket-600 text-2xl mb-4">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 font-heading mb-2">หมูฮ้อง (Moo Hong)</h3>
+                    <p class="text-slate-600 text-sm">หมูสามชั้นต้มเค็มพริกไทยดำและซีอิ๊ว ต้มจนเนื้อเปื่อยนุ่มละลายในปาก เมนูเด็ดสไตล์บาบ๋า-เพอรานากัน</p>
+                </div>
+
+                <!-- Food Item 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-phuket-100 hover:border-phuket-300 transition-all card-hover">
+                    <div class="w-14 h-14 bg-phuket-50 rounded-2xl flex items-center justify-center text-phuket-600 text-2xl mb-4">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 font-heading mb-2">แกงปูใบชะพลู</h3>
+                    <p class="text-slate-600 text-sm">เนื้อกรรเชียงปูแน่นๆ ในแกงคั่วกะทิเข้มข้น รสชาติจัดจ้านหอมกลิ่นใบชะพลู รับประทานคู่กับเส้นหมี่ขาว</p>
+                </div>
+
+                <!-- Food Item 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-phuket-100 hover:border-phuket-300 transition-all card-hover">
+                    <div class="w-14 h-14 bg-phuket-50 rounded-2xl flex items-center justify-center text-phuket-600 text-2xl mb-4">
+                        <i class="fa-solid fa-plate-wheat"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 font-heading mb-2">หมี่ฮกเกี้ยน</h3>
+                    <p class="text-slate-600 text-sm">เส้นบะหมี่เหลืองเส้นใหญ่ผัดต้มยำแห้ง ใส่กุ้ง หมู ปลาหมึก และไข่ยางมะตูม โรยหน้าด้วยกากหมูกรอบ</p>
+                </div>
+
+                <!-- Food Item 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-phuket-100 hover:border-phuket-300 transition-all card-hover">
+                    <div class="w-14 h-14 bg-phuket-50 rounded-2xl flex items-center justify-center text-phuket-600 text-2xl mb-4">
+                        <i class="fa-solid fa-cookie"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 font-heading mb-2">โอ้เอ๋ว (O-Aew)</h3>
+                    <p class="text-slate-600 text-sm">ของหวานคลายร้อนท้องถิ่น ทำจากวุ้นเมล็ดกล้วยน้ำว้า ผสมน้ำเชื่อม ราดถั่วแดงและน้ำแข็งใสเย็นสดชื่น</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FESTIVALS SECTION -->
+    <section id="festivals" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-phuket-600 font-semibold text-sm tracking-widest uppercase mb-2">Culture & Events</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-slate-900 font-heading">เทศกาล & ประเพณีอันทรงคุณค่า</p>
+                <div class="w-16 h-1 bg-phuket-500 mx-auto my-4 rounded-full"></div>
+                <p class="text-slate-600">สัมผัสวิถีชีวิต ความเชื่อ และความศรัทธาอันยาวนานผ่านงานเทศกาลระดับโลกของเมืองภูเก็ต</p>
+            </div>
+
+            <!-- SPECIAL FEATURED: VEGETARIAN FESTIVAL (เจี๊ยะฉ่าย) -->
+            <div class="bg-gradient-to-br from-amber-500 via-orange-500 to-red-600 rounded-3xl text-white p-8 sm:p-10 shadow-xl mb-12 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black pointer-events-none">齋</div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md text-amber-100 text-xs font-bold rounded-full border border-white/30 uppercase tracking-wider">
+                            <i class="fa-solid fa-fire text-amber-300"></i> ไฮไลต์เทศกาลยิ่งใหญ่ระดับโลก
+                        </span>
+                        <h3 class="text-2xl sm:text-4xl font-extrabold font-heading text-white leading-tight">
+                            ประเพณีถือศีลกินผัก ภูเก็ต (เจี๊ยะฉ่าย)
+                        </h3>
+                        <p class="text-amber-100 text-sm sm:text-base leading-relaxed">
+                            มรดกทางวัฒนธรรมอันศักดิ์สิทธิ์อายุกว่า 190 ปี จัดขึ้นเป็นเวลา 9 วัน 9 คืน ในช่วงขึ้น 1 ค่ำ ถึง 9 ค่ำ เดือน 9 ตามปฏิทินจีน (ประมาณเดือนกันยายน-ตุลาคมของทุกปี) ชาวภูเก็ตและผู้ศรัทธาจะนุ่งขาวห่มขาว ถือศีล ละเว้นเนื้อสัตว์ เพื่อล้างกายใจให้บริสุทธิ์
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-amber-200 text-sm mb-1"><i class="fa-solid fa-torii-gate mr-1.5"></i> พิธียกเสาโกเต้ง</h4>
+                                <p class="text-xs text-slate-100">อัญเชิญองค์หยกฮ่องเต้และกิวอ๋องต่ายเต้เพื่อเริ่มงานประเพณีอย่างเป็นทางการ</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-amber-200 text-sm mb-1"><i class="fa-solid fa-person-dots-from-line mr-1.5"></i> ขบวนอิ้วเก้ง (พิธีม้าทรง)</h4>
+                                <p class="text-xs text-slate-100">ขบวนแห่พระออกประพาสเพื่ออวยพร และขจัดสิ่งอัปมงคลให้ชาวเมือง</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-2 text-xs">
+                            <span class="bg-black/20 px-3 py-1.5 rounded-lg border border-white/10"><i class="fa-solid fa-check text-green-300 mr-1"></i> ถือศีล 10 ประการ</span>
+                            <span class="bg-black/20 px-3 py-1.5 rounded-lg border border-white/10"><i class="fa-solid fa-check text-green-300 mr-1"></i> แต่งกายชุดขาวบริสุทธิ์</span>
+                            <span class="bg-black/20 px-3 py-1.5 rounded-lg border border-white/10"><i class="fa-solid fa-check text-green-300 mr-1"></i> ลุยไฟ & ขึ้นบันไดมีด</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-slate-100">
+                        <h4 class="text-lg font-bold font-heading text-amber-200 mb-3 border-b border-white/20 pb-2">
+                            <i class="fa-solid fa-vihara mr-2"></i> ศาลเจ้าเก่าแก่ยอดนิยม (อ๊าม)
+                        </h4>
+                        <ul class="space-y-2.5 text-xs">
+                            <li class="flex items-start justify-between">
+                                <span class="font-semibold text-white">1. ศาลเจ้ากระทู้ (อ๊ามกระทู้)</span>
+                                <span class="text-amber-200">กำเนิดประเพณีแห่งแรก</span>
+                            </li>
+                            <li class="flex items-start justify-between">
+                                <span class="font-semibold text-white">2. ศาลเจ้าจุ้ยตุ่ย (อ๊ามจุ้ยตุ่ย)</span>
+                                <span class="text-amber-200">ศาลเจ้าใหญ่ที่สุดในเมือง</span>
+                            </li>
+                            <li class="flex items-start justify-between">
+                                <span class="font-semibold text-white">3. ศาลเจ้าบางเหนียว</span>
+                                <span class="text-amber-200">ศูนย์รวมศรัทธาฝั่งใต้</span>
+                            </li>
+                            <li class="flex items-start justify-between">
+                                <span class="font-semibold text-white">4. ศาลเจ้าหลิมฮู้ไท่ซู่ (สามกอง)</span>
+                                <span class="text-amber-200">ขบวนแห่สุดอลังการ</span>
+                            </li>
+                            <li class="flex items-start justify-between">
+                                <span class="font-semibold text-white">5. ศาลเจ้าท่าเรือ</span>
+                                <span class="text-amber-200">เทพเจ้าโป๋เซ้งต่ายเต้</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Festival 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-red-100 text-red-600 text-xs font-semibold rounded-full">
+                                <i class="fa-solid fa-calendar-day mr-1"></i> ช่วงเดือนกุมภาพันธ์
+                            </span>
+                            <i class="fa-solid fa-drum text-phuket-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-3">ตรุษจีน & งานย้อนรอยอดีตภูเก็ต</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            การเฉลิมฉลองเทศกาลตรุษจีนของชาวไทยเชื้อสายจีนเพอรานากัน ตกแต่งย่านเมืองเก่าด้วยโคมไฟสีแดง ประดับไฟสวยงาม มีการแสดงเชิดสิงโต มังกร และร้านค้าอาหารพื้นเมืองตลอดทางเดิน
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+                        <span>สถานที่: ย่านเมืองเก่าภูเก็ต</span>
+                        <span class="font-semibold text-phuket-600">ไฮไลต์ประจำปี</span>
+                    </div>
+                </div>
+
+                <!-- Festival 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-semibold rounded-full">
+                                <i class="fa-solid fa-calendar-day mr-1"></i> ช่วงเดือนกันยายน-ตุลาคม
+                            </span>
+                            <i class="fa-solid fa-apple-whole text-phuket-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-3">ประเพณีถือศีลกินผัก ( Vegetarian Festival )</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            ประเพณีอันยิ่งใหญ่ยึดถือปฏิบัติตามความเชื่อจีน ละเว้นการทานเนื้อสัตว์เป็นเวลา 9 วัน มีขบวนผ่อเห่งอ๊าม (พิธีม้าทรง) และการจุดประทัดทั่วเมืองเพื่อความเป็นสิริมงคล
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+                        <span>สถานที่: ศาลเจ้าทั่วจังหวัดภูเก็ต</span>
+                        <span class="font-semibold text-phuket-600">9 วัน 9 คืน</span>
+                    </div>
+                </div>
+
+                <!-- Festival 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col justify-between card-hover">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-phuket-100 text-phuket-700 text-xs font-semibold rounded-full">
+                                <i class="fa-solid fa-calendar-day mr-1"></i> ทุกวันอาทิตย์
+                            </span>
+                            <i class="fa-solid fa-store text-phuket-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 font-heading mb-3">หลาดใหญ่ (Phuket Walking Street)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            ถนนคนเดินย่านเมืองเก่าสายถลาง เปิดให้บริการทุกเย็นวันอาทิตย์ ศูนย์รวมสินค้าแฮนด์เมด งานศิลปะ อาหารท้องถิ่น และดนตรีสดท่ามกลางบรรยากาศไฟประดับตึกเก่า
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+                        <span>สถานที่: ถนนถลาง</span>
+                        <span class="font-semibold text-phuket-600">16:00 - 22:00 น.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: ITINERARIES (2, 3, 4, 5 DAYS) -->
+    <section id="itineraries" class="py-24 bg-white border-t border-phuket-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-phuket-600 font-semibold text-sm tracking-widest uppercase mb-2">Trip Suggestions</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-slate-900 font-heading">แจกแผนการท่องเที่ยวภูเก็ต (2-5 วัน)</p>
+                <div class="w-16 h-1 bg-phuket-500 mx-auto my-4 rounded-full"></div>
+                <p class="text-slate-600">เลือกจำนวนวันที่คุณต้องการเที่ยว เราเตรียมตารางการเดินทางที่ครบครันไว้ให้คุณแล้ว!</p>
+            </div>
+
+            <!-- Itinerary Tab Nav Buttons -->
+            <div class="flex justify-center gap-2 sm:gap-4 mb-10 overflow-x-auto pb-2">
+                <button onclick="switchItineraryTab('day2')" id="tab-btn-day2" class="itinerary-tab-btn px-6 py-3 rounded-2xl font-semibold text-sm sm:text-base bg-phuket-500 text-white shadow-md transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-bolt"></i> 2 วัน 1 คืน (ทริปเร่งด่วน)
+                </button>
+                <button onclick="switchItineraryTab('day3')" id="tab-btn-day3" class="itinerary-tab-btn px-6 py-3 rounded-2xl font-semibold text-sm sm:text-base bg-slate-100 text-slate-600 hover:bg-phuket-50 transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-star"></i> 3 วัน 2 คืน (ยอดฮิต)
+                </button>
+                <button onclick="switchItineraryTab('day4')" id="tab-btn-day4" class="itinerary-tab-btn px-6 py-3 rounded-2xl font-semibold text-sm sm:text-base bg-slate-100 text-slate-600 hover:bg-phuket-50 transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-umbrella-beach"></i> 4 วัน 3 คืน (ชิลทะเล & ดำน้ำ)
+                </button>
+                <button onclick="switchItineraryTab('day5')" id="tab-btn-day5" class="itinerary-tab-btn px-6 py-3 rounded-2xl font-semibold text-sm sm:text-base bg-slate-100 text-slate-600 hover:bg-phuket-50 transition-all flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-gem"></i> 5 วัน 4 คืน (เที่ยวเจาะลึก)
+                </button>
+            </div>
+
+            <!-- Itinerary Content Container -->
+            <div class="bg-phuket-50/60 rounded-3xl p-6 sm:p-10 border border-phuket-100 shadow-sm">
+                <!-- 2 DAYS ITINERARY -->
+                <div id="itinerary-day2" class="itinerary-content space-y-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-phuket-200 pb-4 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-phuket-600 uppercase tracking-widest">Weekend Getaway</span>
+                            <h3 class="text-2xl font-bold font-heading text-slate-800">แผนเที่ยว 2 วัน 1 คืน : ไฮไลท์รอบเกาะแบบเร่งด่วน</h3>
+                        </div>
+                        <span class="px-4 py-2 bg-phuket-100 text-phuket-700 font-semibold rounded-full text-xs">เหมาะสำหรับ: มีเวลาน้อย / เสาร์-อาทิตย์</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-phuket-500 text-white font-bold flex items-center justify-center font-heading">D1</div>
+                                <h4 class="font-bold text-lg text-slate-800 font-heading">วันที่ 1: สัมผัสเมืองเก่า & พระอาทิตย์ตก</h4>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600 border-l-2 border-phuket-200 pl-4 ml-2">
+                                <li><strong class="text-phuket-700">เช้า:</strong> เดินทางถึงภูเก็ต ทานเช้า "ขนมจีนป้าติ่ง" หรือ "โลบะ" ร้านเด็ด</li>
+                                <li><strong class="text-phuket-700">กลางวัน:</strong> เดินถ่ายรูปสตรีทอาร์ต ย่านเมืองเก่าถนนถลาง ชิมหมี่ฮกเกี้ยน</li>
+                                <li><strong class="text-phuket-700">บ่าย:</strong> ไหว้พระวัดฉลอง (วัดไชยธาราราม) และขึ้นเขานาคเกิดสักการะ "พระใหญ่"</li>
+                                <li><strong class="text-phuket-700">เย็น:</strong> ชมพระอาทิตย์ตกดินสุดอลังการที่ "แหลมพรหมเทพ" มื้อค่ำอาหารทะเลราไวย์</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-phuket-500 text-white font-bold flex items-center justify-center font-heading">D2</div>
+                                <h4 class="font-bold text-lg text-slate-800 font-heading">วันที่ 2: ชมวิวทะเลสวย & คาเฟ่ริมหาด</h4>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600 border-l-2 border-phuket-200 pl-4 ml-2">
+                                <li><strong class="text-phuket-700">เช้า:</strong> แวะชมวิว 3 หาดที่ "จุดชมวิวเขาสามหาด" (กะตะน้อย, กะตะ, กะรน)</li>
+                                <li><strong class="text-phuket-700">กลางวัน:</strong> พักผ่อนคาเฟ่สวยริมหาดกะรน หรือหาดป่าตอง ชิมขนมหวาน "โอ้เอ๋ว"</li>
+                                <li><strong class="text-phuket-700">บ่าย:</strong> ซื้อของฝากร้านเม็ดมะม่วงหิมพานต์ หรือเต้าส้อเมืองภูเก็ต</li>
+                                <li><strong class="text-phuket-700">เย็น:</strong> เดินทางกลับสนามบินภูเก็ต โดยสวัสดิภาพ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 DAYS ITINERARY -->
+                <div id="itinerary-day3" class="itinerary-content space-y-8 hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-phuket-200 pb-4 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-phuket-600 uppercase tracking-widest">Most Popular Route</span>
+                            <h3 class="text-2xl font-bold font-heading text-slate-800">แผนเที่ยว 3 วัน 2 คืน : ครบเครื่อง เมือง ทะเล เกาะ</h3>
+                        </div>
+                        <span class="px-4 py-2 bg-phuket-100 text-phuket-700 font-semibold rounded-full text-xs">เหมาะสำหรับ: นักท่องเที่ยวครั้งแรก</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-phuket-500 text-white font-bold flex items-center justify-center font-heading">D1</div>
+                                <h4 class="font-bold text-lg text-slate-800 font-heading">วันที่ 1: วัฒนธรรม & ย่านเมืองเก่า</h4>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600 border-l-2 border-phuket-200 pl-4 ml-2">
+                                <li><strong class="text-phuket-700">เช้า:</strong> เช็คอินที่พักในเมืองภูเก็ต เริ่มต้นด้วยมื้อเช้าดิบซำ</li>
+                                <li><strong class="text-phuket-700">กลางวัน:</strong> เดินเล่นตึกโบราณชิโน-ยูโรเปียน ซอยโรมานีย์ ถ่ายรูปกับสตรีทอาร์ต</li>
+                                <li><strong class="text-phuket-700">เย็น:</strong> ชมวิวพานอรามาตัวเมืองที่ "จุดชมวิวเขารัง" และทานอาหารเย็นริมหาด</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-phuket-500 text-white font-bold flex items-center justify-center font-heading">D2</div>
+                                <h4 class="font-bold text-lg text-slate-800 font-heading">วันที่ 2: ทริปเกาะราชา & เกาะเฮ</h4>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600 border-l-2 border-phuket-200 pl-4 ml-2">
+                                <li><strong class="text-phuket-700">เช้า:</strong> ลงเรือสปีดโบ๊ทจากท่าเรือฉลอง มุ่งหน้าสู่เกาะเฮ ดำน้ำชมปะการัง</li>
+                                <li><strong class="text-phuket-700">กลางวัน:</strong> รับประทานอาหารบนเกาะราชา เล่นน้ำหาดทรายขาวเนียนละเอียด</li>
+                                <li><strong class="text-phuket-700">เย็น:</strong> เดินทางกลับฝั่ง แวะชมพระอาทิตย์ตกที่แหลมพรหมเทพ หรือหาดในหาน</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-phuket-500 text-white font-bold flex items-center justify-center font-heading">D3</div>
+                                <h4 class="font-bold text-lg text-slate-800 font-heading">วันที่ 3: หาดสวย & ซื้อของฝาก</h4>
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600 border-l-2 border-phuket-200 pl-4 ml-2">
+                                <li><strong class="text-phuket-700">เช้า:</strong> สักการะพระพุทธมิ่งมงคลเอกนาคคีรี (พระใหญ่)</li>
+                                <li><strong class="text-phuket-700">กลางวัน:</strong> ทานแกงปูใบชะพลู และหมูฮ้อง ร้านดังระดับมิชลิน</li>
+                                <li><strong class="text-phuket-700">บ่าย:</strong> ช้อปปิ้งของฝากพื้นเมือง แวะถ่ายรูปเครื่องบินตกหน้าหาดไม้ขาว</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 DAYS ITINERARY -->
+                <div id="itinerary-day4" class="itinerary-content space-y-8 hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-phuket-200 pb-4 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-phuket-600 uppercase tracking-widest">Island & Island Hopping</span>
+                            <h3 class="text-2xl font-bold font-heading text-slate-800">แผนเที่ยว 4 วัน 3 คืน : เที่ยวสองเกาะใหญ่ & ซีฟู้ดจัดเต็ม</h3>
+                        </div>
+                        <span class="px-4 py-2 bg-phuket-100 text-phuket-700 font-semibold rounded-full text-xs">เหมาะสำหรับ: สายทะเล & คนรักธรรมชาติน้ำใส</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-lg bg-phuket-500 text-white font-bold flex items-center justify-center text-sm font-heading">D1</div>
+                                <h4 class="font-bold text-slate-800 font-heading text-sm">วันแรก: เมืองเก่า & อาหารใต้</h4>
+                            </div>
+                            <p class="text-xs text-slate-600">เดินทางถึงภูเก็ต เที่ยวย่านเมืองเก่า ถนนถลาง ทานหมูฮ้อง โลบะ และชมแสงยามเย็นที่เขารัง</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-lg bg-phuket-500 text-white font-bold flex items-center justify-center text-sm font-heading">D2</div>
+                                <h4 class="font-bold text-slate-800 font-heading text-sm">วันที่ 2: ทริปเกาะพีพี & อ่าวมาหยา</h4>
+                            </div>
+                            <p class="text-xs text-slate-600">นั่งเรือสปีดโบ๊ททัวร์เกาะพีพีเล อ่าวมาหยา ปิเละเลกูน ดำน้ำชมปลาและปะการังสีสันสดใส</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-lg bg-phuket-500 text-white font-bold flex items-center justify-center text-sm font-heading">D3</div>
+                                <h4 class="font-bold text-slate-800 font-heading text-sm">วันที่ 3: หาดฝั่งตะวันตก & พรหมเทพ</h4>
+                            </div>
+                            <p class="text-xs text-slate-600">เล่นน้ำหาดกะตะ-กะรน เล่นเซิร์ฟ ไหว้พระใหญ่นาคเกิด ชม sunset ที่แหลมพรหมเทพ ทานซีฟู้ดราไวย์</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-lg bg-phuket-500 text-white font-bold flex items-center justify-center text-sm font-heading">D4</div>
+                                <h4 class="font-bold text-slate-800 font-heading text-sm">วันที่ 4: สปา คาเฟ่ & ช้อปปิ้ง</h4>
+                            </div>
+                            <p class="text-xs text-slate-600">ผ่อนคลายกับสปาสไตล์นวดไทย นั่งคาเฟ่สุดเก๋ย่านเชิงทะเล/ลากูน่า ซื้อของฝากกลับบ้าน</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 DAYS ITINERARY -->
+                <div id="itinerary-day5" class="itinerary-content space-y-8 hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-phuket-200 pb-4 gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-phuket-600 uppercase tracking-widest">Ultimate Grand Explorer</span>
+                            <h3 class="text-2xl font-bold font-heading text-slate-800">แผนเที่ยว 5 วัน 4 คืน : เจาะลึกภูเก็ต พักผ่อนสโลว์ไลฟ์</h3>
+                        </div>
+                        <span class="px-4 py-2 bg-phuket-100 text-phuket-700 font-semibold rounded-full text-xs">เหมาะสำหรับ: วันหยุดยาว / พักผ่อนแบบไม่เร่งรีบ</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 space-y-2">
+                            <span class="w-6 h-6 rounded bg-phuket-500 text-white font-bold text-xs flex items-center justify-center">D1</span>
+                            <h5 class="font-bold text-xs text-slate-800">วัน 1: สัมผัสวิถีเพอรานากัน</h5>
+                            <p class="text-[11px] text-slate-500">พิพิธภัณฑ์ภูเก็ตไทยหัว ย่านเมืองเก่า ชิมอาหารพื้นเมืองโอ้เอ๋วและหมี่สั่ว</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 space-y-2">
+                            <span class="w-6 h-6 rounded bg-phuket-500 text-white font-bold text-xs flex items-center justify-center">D2</span>
+                            <h5 class="font-bold text-xs text-slate-800">วัน 2: ทริปดำน้ำหมู่เกาะไข่/ราชา</h5>
+                            <p class="text-[11px] text-slate-500">เต็มอิ่มกับท้องทะเลอันดามัน กิจกรรมดำน้ำดูปะการังน้ำใส และเล่นพาราเสลลิ่ง</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 space-y-2">
+                            <span class="w-6 h-6 rounded bg-phuket-500 text-white font-bold text-xs flex items-center justify-center">D3</span>
+                            <h5 class="font-bold text-xs text-slate-800">วัน 3: ธรรมชาติ & วิวอ่าวพังงา</h5>
+                            <p class="text-[11px] text-slate-500">ล่องเรือแคนูอ่าวพังงา ถ้ำลอด และเขาตะปู (เจมส์ บอนด์) ใกล้ภูเก็ต</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 space-y-2">
+                            <span class="w-6 h-6 rounded bg-phuket-500 text-white font-bold text-xs flex items-center justify-center">D4</span>
+                            <h5 class="font-bold text-xs text-slate-800">วัน 4: ตะลุยหาดสวย & บีชคลับ</h5>
+                            <p class="text-[11px] text-slate-500">เที่ยวหาดสุรินทร์ หาดกมลา และสังสรรค์ยามค่ำคืนที่บีชคลับริมหาดป่าตอง</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 space-y-2">
+                            <span class="w-6 h-6 rounded bg-phuket-500 text-white font-bold text-xs flex items-center justify-center">D5</span>
+                            <h5 class="font-bold text-xs text-slate-800">วัน 5: ซื้อของฝาก & เช็คอินหาดไม้ขาว</h5>
+                            <p class="text-[11px] text-slate-500">ถ่ายรูปเครื่องบินร่อนลงหาดไม้ขาว ซื้อเม็ดมะม่วงหิมพานต์และน้ำพริกกุ้งเสียบ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRIP PLANNER & CALCULATOR SECTION -->
+    <section id="planner" class="py-24 bg-phuket-900 text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="px-3 py-1 bg-phuket-500/20 text-phuket-300 text-xs font-semibold rounded-full uppercase tracking-wider mb-2 inline-block border border-phuket-400/30">Interactive Tool</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading">เครื่องมือคำนวณงบ & วางแผนเที่ยวภูเก็ต</h2>
+                <p class="text-slate-300 mt-3">วางแผนการเดินทางของคุณได้อย่างรวดเร็ว คำนวณงบประมาณประมาณการตามสไตล์ที่คุณชอบ</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Form Column -->
+                <div class="lg:col-span-7 bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/10">
+                    <h3 class="text-xl font-bold font-heading mb-6 flex items-center gap-2 text-phuket-200">
+                        <i class="fa-solid fa-sliders"></i> กำหนดรูปแบบทริปของคุณ
+                    </h3>
+
+                    <div class="space-y-6">
+                        <!-- Number of Days -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-200 mb-2">
+                                จำนวนวันเดินทาง: <span id="days-val" class="text-phuket-300 font-bold text-lg">3</span> วัน
+                            </label>
+                            <input type="range" id="days" min="1" max="7" value="3" class="w-full h-2 bg-phuket-800 rounded-lg appearance-none cursor-pointer accent-phuket-400" oninput="updateCalculator()">
+                        </div>
+
+                        <!-- Number of Travelers -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-200 mb-2">
+                                จำนวนผู้เดินทาง: <span id="people-val" class="text-phuket-300 font-bold text-lg">2</span> ท่าน
+                            </label>
+                            <input type="range" id="people" min="1" max="10" value="2" class="w-full h-2 bg-phuket-800 rounded-lg appearance-none cursor-pointer accent-phuket-400" oninput="updateCalculator()">
+                        </div>
+
+                        <!-- Travel Style -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-200 mb-2">สไตล์การท่องเที่ยว & ที่พัก:</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="style" value="budget" class="peer hidden" onchange="updateCalculator()">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 peer-checked:bg-phuket-500 peer-checked:border-phuket-400 transition-all text-xs sm:text-sm">
+                                        <i class="fa-solid fa-backpack block text-lg mb-1"></i> ประหยัด
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="style" value="standard" checked class="peer hidden" onchange="updateCalculator()">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 peer-checked:bg-phuket-500 peer-checked:border-phuket-400 transition-all text-xs sm:text-sm">
+                                        <i class="fa-solid fa-hotel block text-lg mb-1"></i> มาตรฐาน
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="style" value="luxury" class="peer hidden" onchange="updateCalculator()">
+                                    <div class="p-3 text-center rounded-xl bg-white/5 border border-white/10 peer-checked:bg-phuket-500 peer-checked:border-phuket-400 transition-all text-xs sm:text-sm">
+                                        <i class="fa-solid fa-crown block text-lg mb-1 text-phuket-gold"></i> หรูหรา
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Included Activities -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-200 mb-2">กิจกรรมเสริมที่ต้องการ:</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 cursor-pointer text-sm">
+                                    <input type="checkbox" id="island-tour" checked class="w-4 h-4 rounded text-phuket-500 focus:ring-0 accent-phuket-500" onchange="updateCalculator()">
+                                    <span>ทัวร์ดำน้ำเกาะราชา/เกาะพีพี (สปีดโบ๊ท) (+1,500 ฿/คน)</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer text-sm">
+                                    <input type="checkbox" id="car-rental" checked class="w-4 h-4 rounded text-phuket-500 focus:ring-0 accent-phuket-500" onchange="updateCalculator()">
+                                    <span>เช่ารถยนต์ขับเที่ยวในภูเก็ต (+900 ฿/วัน)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Column -->
+                <div class="lg:col-span-5 bg-white text-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-phuket-600 uppercase tracking-widest">Estimated Budget</span>
+                        <h4 class="text-lg font-bold font-heading text-slate-700">ประมาณการงบประมาณรวม</h4>
+                        
+                        <div class="my-6 p-6 bg-phuket-50 rounded-2xl border border-phuket-100 text-center">
+                            <span class="text-xs text-slate-500 block mb-1">งบประมาณโดยประมาณทั้งหมด</span>
+                            <span class="text-4xl sm:text-5xl font-extrabold text-phuket-600 font-heading" id="total-cost">7,800</span>
+                            <span class="text-slate-600 font-medium ml-1">บาท</span>
+                            <p class="text-xs text-slate-400 mt-2">*เฉลี่ยประมาณ <span id="per-person-cost" class="font-semibold text-slate-600">3,900</span> บาท/ท่าน</p>
+                        </div>
+
+                        <!-- Suggested Itinerary Preview -->
+                        <div class="space-y-3 mb-6">
+                            <h5 class="text-sm font-bold text-slate-700 uppercase tracking-wider">ตัวอย่างแผนการเดินทางแนะนำ:</h5>
+                            <ul class="text-xs text-slate-600 space-y-2" id="itinerary-preview">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                                    <span><strong>วันแรก:</strong> เช็คอินที่พัก เดินเล่นถ่ายรูปย่านเมืองเก่าภูเก็ต ชิมอาหารพื้นเมือง</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                                    <span><strong>วันต่อมา:</strong> เที่ยวชมจุดชมวิวแหลมพรหมเทพ ไหว้พระใหญ่ ชมวิวทะเลหาดกะตะ</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button onclick="downloadPlan()" class="w-full bg-phuket-500 hover:bg-phuket-600 text-white font-medium py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i>
+                        <span>บันทึกสรุปแผนการเที่ยวนี้</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Brand Info -->
+                <div class="md:col-span-1">
+                    <a href="#" class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-phuket-500 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-water text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold font-heading text-white">สัมผัสมนต์เสน่ห์ภูเก็ต</span>
+                    </a>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                        คู่มือแนะนำการท่องเที่ยวจังหวัดภูเก็ต ครบถ้วนทั้งสถานที่ท่องเที่ยวยอดฮิต ร้านอาหารเด็ด ประเพณีท้องถิ่น และเครื่องมือจัดทริป
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-phuket-500 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-phuket-500 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-phuket-500 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-heading font-semibold mb-4 text-base">เมนูนำทาง</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#places" class="hover:text-phuket-400 transition-colors">สถานที่ท่องเที่ยว</a></li>
+                        <li><a href="#food" class="hover:text-phuket-400 transition-colors">อาหารพื้นเมือง</a></li>
+                        <li><a href="#festivals" class="hover:text-phuket-400 transition-colors">เทศกาลกินเจ & งานประเพณี</a></li>
+                        <li><a href="#itineraries" class="hover:text-phuket-400 transition-colors">แผนการเที่ยว 2-5 วัน</a></li>
+                        <li><a href="#planner" class="hover:text-phuket-400 transition-colors">วางแผนคำนวณงบ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Emergency Contacts -->
+                <div>
+                    <h4 class="text-white font-heading font-semibold mb-4 text-base">เบอร์โทรสำคัญ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-phuket-400 w-4"></i>
+                            <span>ตำรวจท่องเที่ยว: <strong>1155</strong></span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-truck-medical text-phuket-400 w-4"></i>
+                            <span>ฉุกเฉินกู้ชีพ: <strong>1669</strong></span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-plane text-phuket-400 w-4"></i>
+                            <span>สนามบินภูเก็ต: <strong>076-351-166</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-heading font-semibold mb-4 text-base">รับข่าวสารท่องเที่ยว</h4>
+                    <p class="text-xs text-slate-400 mb-3">ลงทะเบียนเพื่อรับโปรโมชันและคำแนะนำการท่องเที่ยวภูเก็ตส่งตรงถึงอีเมลคุณ</p>
+                    <form onsubmit="handleSubscribe(event)" class="space-y-2">
+                        <input type="email" required placeholder="กรอกอีเมลของคุณ..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-phuket-400">
+                        <button type="submit" class="w-full bg-phuket-500 hover:bg-phuket-600 text-white text-sm font-medium py-2.5 rounded-xl transition-all">
+                            สมัครรับข่าวสาร
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2026 สัมผัสมนต์เสน่ห์ภูเก็ต (Discover Phuket). สงวนลิขสิทธิ์ทั้งหมด.</p>
+                <p>ออกแบบอย่างทันสมัยด้วยโทนสีฟ้า-ขาว รองรับอุปกรณ์เคลื่อนที่</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Switch Itinerary Day Tabs Logic
+        function switchItineraryTab(dayId) {
+            // Hide all itinerary contents
+            const contents = document.querySelectorAll('.itinerary-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Reset all tab button styles
+            const buttons = document.querySelectorAll('.itinerary-tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-phuket-500', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            // Show selected content and highlight active button
+            const activeContent = document.getElementById(`itinerary-${dayId}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('animate-fadeIn');
+            }
+
+            const activeBtn = document.getElementById(`tab-btn-${dayId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+                activeBtn.classList.add('bg-phuket-500', 'text-white', 'shadow-md');
+            }
+        }
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-2xl';
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            });
+        });
+
+        // Places Filter Logic
+        function filterPlaces(category) {
+            const cards = document.querySelectorAll('.place-card');
+            const buttons = document.querySelectorAll('#places-filter-container button');
+
+            // Update Active Button Style
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-phuket-500', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+            event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            event.target.classList.add('bg-phuket-500', 'text-white', 'shadow-md');
+
+            // Filter Cards
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                    card.classList.add('animate-fadeIn');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Trip Calculator Logic
+        function updateCalculator() {
+            const days = parseInt(document.getElementById('days').value);
+            const people = parseInt(document.getElementById('people').value);
+            const style = document.querySelector('input[name="style"]:checked').value;
+            const hasIslandTour = document.getElementById('island-tour').checked;
+            const hasCarRental = document.getElementById('car-rental').checked;
+
+            // UI Label updates
+            document.getElementById('days-val').innerText = days;
+            document.getElementById('people-val').innerText = people;
+
+            // Daily Rates per person based on style
+            let dailyRate = 1200; // standard
+            if (style === 'budget') dailyRate = 600;
+            if (style === 'luxury') dailyRate = 3500;
+
+            let total = dailyRate * days * people;
+
+            // Add Extras
+            if (hasIslandTour) {
+                total += 1500 * people;
+            }
+            if (hasCarRental) {
+                total += 900 * days;
+            }
+
+            const perPerson = Math.round(total / people);
+
+            // Update DOM Output with Animation Effect
+            document.getElementById('total-cost').innerText = total.toLocaleString();
+            document.getElementById('per-person-cost').innerText = perPerson.toLocaleString();
+
+            // Update Itinerary Preview
+            const itineraryContainer = document.getElementById('itinerary-preview');
+            let itineraryHTML = `
+                <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                    <span><strong>วันที่ 1:</strong> เดินทางถึง เช็คอินย่านเมืองเก่า ถ่ายรูปตึกชิโน-ยูโรเปียน และทานหมี่ฮกเกี้ยน</span>
+                </li>
+            `;
+
+            if (days >= 2) {
+                itineraryHTML += `
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                        <span><strong>วันที่ 2:</strong> ไหว้พระวัดใหญ่ ชมวิวหาดกะรน และชมพระอาทิตย์ตกดินที่แหลมพรหมเทพ</span>
+                    </li>
+                `;
+            }
+
+            if (hasIslandTour && days >= 2) {
+                itineraryHTML += `
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                        <span><strong>พิเศษ:</strong> ทริปดำน้ำสปีดโบ๊ทชมปะการังที่เกาะราชา/เกาะเฮ พร้อมอาหารกลางวัน</span>
+                    </li>
+                `;
+            }
+
+            if (days >= 3) {
+                itineraryHTML += `
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-phuket-500 mt-0.5"></i>
+                        <span><strong>วันสุดท้าย:</strong> ซื้อของฝากเม็ดมะม่วงหิมพานต์ พักผ่อนที่คาเฟ่ริมหาดก่อนเดินทางกลับ</span>
+                    </li>
+                `;
+            }
+
+            itineraryContainer.innerHTML = itineraryHTML;
+        }
+
+        // Download or Save Plan Action
+        function downloadPlan() {
+            const days = document.getElementById('days').value;
+            const people = document.getElementById('people').value;
+            const cost = document.getElementById('total-cost').innerText;
+
+            const textContent = `=== สรุปแผนการเที่ยวภูเก็ตของคุณ ===\nจำนวนวัน: ${days} วัน\nจำนวนผู้เดินทาง: ${people} ท่าน\nประมาณการงบประมาณรวม: ${cost} บาท\n\nจัดทำโดย: เว็บไซต์ "สัมผัสมนต์เสน่ห์ภูเก็ต"`;
+
+            const element = document.createElement('a');
+            const file = new Blob([textContent], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = `Phuket_Trip_Plan_${days}Days.txt`;
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Newsletter Subscription Handler
+        function handleSubscribe(event) {
+            event.preventDefault();
+            alert('ขอบคุณสำหรับการสมัครรับข่าวสาร! เราจะส่งสิทธิพิเศษและข่าวสารท่องเที่ยวภูเก็ตให้คุณ');
+            event.target.reset();
+        }
+
+        // Initial Calculation on Page Load
+        window.onload = function() {
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
